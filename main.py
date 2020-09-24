@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 from settings import *
 from sprites import *
+from unit import Unit
 
 # TODO
 # Arena needs solid walls
@@ -16,6 +17,7 @@ class Game:
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
         self.load_data()
+        self.units = []
 
     def load_data(self):
         pass
@@ -25,6 +27,8 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.player = Player(self, 1, 1) ## ~~~~~~~~~~~~~~~~~~~~~~ PLACING
+        self.units.append(Unit(self, 2, 2, "potato", 1, 1, 1, 1, 1, "mage"))
+        self.units.append(Unit(self, 5, 2, "carrot", 1, 1, 1, 1, 1, "warrior"))
 
     def run(self):
         # game loop - set self.playing = False to end the game
