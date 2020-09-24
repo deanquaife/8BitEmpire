@@ -1,11 +1,12 @@
-# KidsCanCode - Game Development with Pygame video series
-# Tile-based game - Part 1
-# Project setup
-# Video link: https://youtu.be/3UxnelT9aCo
 import pygame as pg
 import sys
 from settings import *
 from sprites import *
+
+# TODO
+# Arena needs solid walls
+# Create class for piece, place it
+# Create turn based movement system~~
 
 class Game:
     def __init__(self):
@@ -23,7 +24,7 @@ class Game:
         # initialize all variables and do all the setup for a new game
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
-        self.player = Player(self, 1, 1)
+        self.player = Player(self, 1, 1) ## ~~~~~~~~~~~~~~~~~~~~~~ PLACING
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -42,7 +43,7 @@ class Game:
         # update portion of the game loop
         self.all_sprites.update()
 
-    def draw_grid(self):
+    def draw_grid(self): # VISUAL GRID DECIDED HERE
         for x in range(0, WIDTH, TILESIZE):
             pg.draw.line(self.screen, LIGHTGREY, (x, 0), (x, HEIGHT))
         for y in range(0, HEIGHT, TILESIZE):
@@ -54,7 +55,7 @@ class Game:
         self.all_sprites.draw(self.screen)
         pg.display.flip()
 
-    def events(self):
+    def events(self): # USER INPUT EVENTS
         # catch all events here
         for event in pg.event.get():
             if event.type == pg.QUIT:
