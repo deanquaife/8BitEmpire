@@ -17,7 +17,8 @@ class Game:
         self.clock = pg.time.Clock()
         pg.key.set_repeat(500, 100)
         self.load_data()
-        self.units = []
+        self.allies = pg.sprite.OrderedUpdates()
+        self.enemies = pg.sprite.OrderedUpdates()
 
     def load_data(self):
         pass
@@ -27,8 +28,8 @@ class Game:
         self.all_sprites = pg.sprite.Group()
         self.walls = pg.sprite.Group()
         self.player = Player(self, 1, 1) ## ~~~~~~~~~~~~~~~~~~~~~~ PLACING
-        self.units.append(Unit(self, 2, 2, "potato", 1, 1, 1, 1, 1, "mage"))
-        self.units.append(Unit(self, 5, 2, "carrot", 1, 1, 1, 1, 1, "warrior"))
+        self.allies.add(Unit(self, 2, 2, "potato", 1, 1, 1, 1, 1, "mage"))
+        self.enemies.add(Unit(self, 5, 2, "carrot", 1, 1, 1, 1, 1, "warrior"))
 
     def run(self):
         # game loop - set self.playing = False to end the game
@@ -59,6 +60,7 @@ class Game:
         self.all_sprites.draw(self.screen)
         pg.display.flip()
 
+    """Movement restrictions should be done here (walls, other units, player movement etc.)"""
     def events(self): # USER INPUT EVENTS
         # catch all events here
         for event in pg.event.get():
